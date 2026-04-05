@@ -20,16 +20,16 @@ Este es el ABC de la programación. Empiezas sin saben absolutamente nada para a
 - Arreglos y matrices
 - Programación orientada a objetos (POO)
 
-  # Algoritmos y Estructuras de datos
-  Habiendo dominado todo lo de **AyP** se encuentran con una nueva materia donde entenderan como se crean, manejan y estructuran los datos a tu conveniencia y otras técnicas de programacion.
-  ## Se tratan temas como:
-  - Recursividad
-  - Backtracking
-  - Listas, pilas y colas
-  - Arboles
+# Algoritmos y Estructuras de datos
+Habiendo dominado todo lo de **AyP** se encuentran con una nueva materia donde entenderan como se crean, manejan y estructuran los datos a tu conveniencia y otras técnicas de programacion.
+## Se tratan temas como:
+- Recursividad
+- Backtracking
+- Listas, pilas y colas
+- Arboles
 
-    # Ingeniería de Software
-    Aquí es donde dejamos de ser solo programadores que escriben código a ser programadores que crean y estructuran grandes proyectos y manejan de forma sólida las bases de la programación y una forma de trabajar en equipo y manejar proyectos.
-    ## Se tratan temas como:
-    -
+ # Ingeniería de Software
+ Aquí es donde dejamos de ser solo programadores que escriben código a ser programadores que crean y estructuran grandes proyectos y manejan de forma sólida las bases de la programación y una forma de trabajar en equipo y manejar proyectos.
+ ## Se tratan temas como:
+ -
     
