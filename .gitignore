@@ -1,2 +1,5 @@
 .docx
 Algoritmos_Y_Programacion/Intento_de_guias
+build/
+*.exe
+.exe
