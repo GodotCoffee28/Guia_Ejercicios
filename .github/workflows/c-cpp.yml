@@ -1,0 +1,21 @@
+name: C CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build (gcc)
+        run: |
+          set -e
+          mkdir -p build
+
+          # Example: compile all C files (adjust if you have multiple mains)
+          find . -name "*.c" -print0 | xargs -0 -I{} sh -c 'echo "Compiling {}"; gcc -Wall -Wextra -O2 "{}" -o "build/$(basename "{}" .c)"'
