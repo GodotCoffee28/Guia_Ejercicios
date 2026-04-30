@@ -1,0 +1,22 @@
+@startuml Ejercicio_A3
+hide footbox
+title 3. lista.add(textField.getText())
+
+participant ":Main" as Main
+participant "textField : JTextField" as CampoTexto
+participant "lista : ArrayList" as Lista
+
+activate Main
+    ' 1. Primero se resuelve el parámetro interno
+    Main -> CampoTexto : getText()
+    activate CampoTexto
+    CampoTexto --> Main : texto
+    deactivate CampoTexto
+
+    ' 2. Luego se ejecuta el método externo usando el resultado anterior
+    Main -> Lista : add(texto)
+    activate Lista
+    Lista --> Main
+    deactivate Lista
+deactivate Main
+@enduml

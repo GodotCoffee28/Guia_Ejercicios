@@ -1,0 +1,17 @@
+@startuml Disco Duro
+class DiscoDuro{
+    String : Tipo
+    Void LeerBytes()
+    Void AlmacenarBytes()
+}
+
+class Pista{
+    Int : Ubicacion 
+}
+
+class Sector{
+    Long long : Bytes
+}
+DiscoDuro "1 ..* " *--- "1" Pista : Contiene
+Pista "1" *--- "1 .. * " Sector : Contiene 
+@enduml

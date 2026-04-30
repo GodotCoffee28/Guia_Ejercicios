@@ -1,0 +1,49 @@
+@startuml Ejercicio_G_Comunicacion
+
+title Ejercicio G: Crear Línea de Venta (Jerárquico)
+
+' Configuración obligatoria del profesor
+skinparam noteBackgroundColor transparent
+skinparam noteBorderColor transparent
+hide members
+
+' 1. Definimos los Actores y Objetos
+object ":Sistema" as UI
+object ":Registro" as Reg
+object "catalogo : CatalogoProductos" as Cat
+object "venta : Venta" as Venta
+object "lineasVenta : List" as List
+object "lv : LineaVenta" as Linea
+
+' 2. El flujo comienza: Sistema -> Registro
+UI -r-> Reg
+note on link
+    1: introducirArticulo(id, cant)
+end note
+
+' 3. Registro consulta al Catálogo (Paso 1.1)
+Reg -d-> Cat
+note on link
+    1.1: espec = getEspecificacion(id)
+end note
+
+' 4. Registro manda a la Venta (Paso 1.2)
+Reg -r-> Venta
+note on link
+    1.2: crearLineaVenta(espec, cant)
+end note
+
+' 5. Venta crea el objeto LineaVenta (Paso 1.2.1)
+' Usamos <<create>> para ser explícitos
+Venta -d-> Linea
+note on link
+    1.2.1: <<create>> new(espec, cant)
+end note
+
+' 6. Venta añade a la Lista (Paso 1.2.2)
+Venta -r-> List
+note on link
+    1.2.2: add(lv)
+end note
+
+@enduml

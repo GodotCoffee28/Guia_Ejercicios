@@ -1,0 +1,21 @@
+@startuml Triangulo
+class Triangulo{ 
+    Int : TipoForma
+}
+
+Class Polígono{
+    String : TipoFigura
+    Int : Área
+    Int : Superficie
+}
+Class Lado{
+    Int : Extremo 1
+    Int : Extremo 2
+    Int : Longitud
+}
+
+Triangulo --|>  Polígono
+Polígono "1    " *-- "3 ..*" Lado
+
+
+@enduml

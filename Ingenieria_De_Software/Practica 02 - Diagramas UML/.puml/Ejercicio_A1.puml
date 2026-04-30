@@ -1,0 +1,22 @@
+@startuml Ejercicio_A1
+hide footbox
+title 1. (miLista.getItem()).hacerAlgo()
+
+participant ":Main" as Main
+participant "miLista : Lista" as Lista
+participant ":Item" as Item
+
+activate Main
+    ' Paso 1: Obtener el objeto
+    Main -> Lista : getItem()
+    activate Lista
+    Lista --> Main : objetoItem
+    deactivate Lista
+
+    ' Paso 2: Usar el objeto obtenido
+    Main -> Item : hacerAlgo()
+    activate Item
+    Item --> Main
+    deactivate Item
+deactivate Main
+@enduml

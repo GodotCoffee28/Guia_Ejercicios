@@ -1,0 +1,14 @@
+@startuml Baseball
+class EquipoBaseball{
+
+}
+Class Jugador{
+
+}
+Class HomeClub{
+    
+}
+
+EquipoBaseball "1"*--"1..*" Jugador : Compone 
+HomeClub "1" --> "1" EquipoBaseball  : Tiene asignado
+@enduml

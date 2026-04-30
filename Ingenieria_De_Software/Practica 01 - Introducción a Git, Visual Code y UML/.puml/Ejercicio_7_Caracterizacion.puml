@@ -1,0 +1,14 @@
+@startuml Caracterizacion
+hide empty members
+
+class Caracterizacion
+class Criterio
+class ElementoClasificado
+
+' La caracterización conoce sus criterios o caracteristicas (1 o muchos criterios)
+Caracterizacion "1" --> "1..*" Criterio : Se fundamenta en >
+
+' El elemento tiene una caracterización
+ElementoClasificado "*" --> "1" Caracterizacion : Generado a partir de >
+
+@enduml

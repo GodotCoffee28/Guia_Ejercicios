@@ -1,0 +1,28 @@
+@startuml Ejercicio_I_Actividad_Vehiculo
+
+title Ejercicio I: Actividad del Vehículo
+
+start
+
+:Arrancar vehículo;
+
+' Estado Detenido (como acción inicial)
+:Estar Detenido;
+
+' Decisión (Bifurcación)
+if (¿Qué marcha pongo?) then (Reversa)
+    :Retrocediendo;
+else (Adelante)
+    ' Agrupamos las actividades de avance
+    partition "Avanzando" {
+        :Poner Primera;
+        :Poner Segunda;
+        :Poner Tercera;
+    }
+endif
+
+:Frenar y Detener;
+
+stop
+
+@enduml

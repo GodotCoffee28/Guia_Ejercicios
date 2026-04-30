@@ -1,0 +1,38 @@
+@startuml Ejercicio_F_Comunicacion
+
+title Ejercicio F: Gestión de Compra
+
+' Configuración obligatoria
+skinparam noteBackgroundColor transparent
+skinparam noteBorderColor transparent
+hide members
+
+' 1. Definimos los Objetos
+object ":Sistema" as System
+object "c : Compra" as Compra
+object "f : Object" as FechaObj
+object "l : List" as Lista
+
+' 2. Enlace Sistema -> Compra (Creación y Configuración)
+' Fíjate que el mensaje 4 ocurre DESPUÉS de consultar a f
+System -d-> Compra
+note on link
+    1: new()
+    2: setCosto(x)
+    4: setFecha(fecha)
+end note
+
+' 3. Enlace Sistema -> f (Resolución del parámetro)
+' Esto es lo primero que se evalúa de la línea 3 del código
+System -r-> FechaObj
+note on link
+    3: getFecha()
+end note
+
+' 4. Enlace Sistema -> Lista (Guardado final)
+System -l-> Lista
+note on link
+    5: add(c)
+end note
+
+@enduml

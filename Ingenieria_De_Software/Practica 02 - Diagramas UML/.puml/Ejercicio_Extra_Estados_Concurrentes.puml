@@ -1,0 +1,24 @@
+@startuml Estados_Concurrentes
+
+title Estado Complejo del Pedido (Concurrentes)
+
+state "Procesamiento del Pedido" as Proceso {
+    
+    ' Región 1: Estado del Pago
+    state "Estado Financiero" as Finanzas {
+        [*] --> PendientePago
+        PendientePago --> Pagado : Tarjeta aprobada
+    }
+    
+    ' SEPARADOR DE CONCURRENCIA
+    ||
+    
+    ' Región 2: Estado de la Logística
+    state "Estado Logístico" as Logistica {
+        [*] --> EnAlmacen
+        EnAlmacen --> Empaquetado : Operario listo
+        Empaquetado --> EnCamino : Transportista sale
+    }
+}
+
+@enduml

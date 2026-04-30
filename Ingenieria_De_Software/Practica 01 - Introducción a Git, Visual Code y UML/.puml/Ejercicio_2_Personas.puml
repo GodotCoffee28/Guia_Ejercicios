@@ -1,0 +1,32 @@
+@startuml Personas
+Class Persona {
+    -String : Nombre
+    -Int : Cedula
+    -Int : Edad
+}
+Entity Estudiante{
+    - Float : Promedio
+    -String : Carrera
+    -Int : Semestre
+    +Void Estudiar()
+    +Void UsarTransporte()
+}
+Entity Profesor{
+    - String : Materia
+    - Int : Años de estudio
+    + Void Enseñar()
+    + Void Corregir()
+    + Int DarNotaDe(String : Parcial)
+}
+Entity Empleado{
+    - String : Profesion
+    - Float : Salario
+    + Void Chambear()
+    + Void UsarTransporte()
+
+}
+Estudiante --|> Persona
+Profesor --|> Persona
+Empleado --|> Persona
+
+@enduml

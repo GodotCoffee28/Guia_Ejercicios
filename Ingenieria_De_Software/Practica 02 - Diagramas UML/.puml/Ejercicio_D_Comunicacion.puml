@@ -1,0 +1,35 @@
+@startuml Ejercicio_D_Comunicacion
+
+title Ejercicio D: MainWindow Communication
+
+' Configuración estilo "Profesor"
+skinparam noteBackgroundColor transparent
+skinparam noteBorderColor transparent
+hide members
+
+' 1. Definir Objetos
+object "MainWindow : JFrame" as Main
+object ": DataStore" as Data
+object "ListeningPort : Socket" as Port
+
+' 2. Enlaces y Mensajes
+' Main -> DataStore
+Main -r-> Data
+note on link
+    1: loadAppSettings()
+end note
+
+' Main -> ListeningPort (Mensajes 2 y 3)
+Main -d-> Port
+note on link
+    2: create
+    3: listen()
+end note
+
+' Auto-mensaje (Reflexivo) en el Puerto
+Port -r-> Port
+note on link
+    4: accept()
+end note
+
+@enduml

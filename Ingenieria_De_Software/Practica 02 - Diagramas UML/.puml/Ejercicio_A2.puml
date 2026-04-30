@@ -1,0 +1,22 @@
+@startuml Ejercicio_A2
+hide footbox
+title 2. miColeccion.getEstudiante(i).getNombre()
+
+participant ":Main" as Main
+participant "miColeccion : Coleccion" as Coleccion
+participant ":Estudiante" as Estudiante
+
+activate Main
+    ' 1. Pedimos el estudiante
+    Main -> Coleccion : getEstudiante(i)
+    activate Coleccion
+    Coleccion --> Main : :Estudiante
+    deactivate Coleccion
+
+    ' 2. Le pedimos el nombre al estudiante retornado
+    Main -> Estudiante : getNombre()
+    activate Estudiante
+    Estudiante --> Main : String (Nombre)
+    deactivate Estudiante
+deactivate Main
+@enduml
