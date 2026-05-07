@@ -1,0 +1,37 @@
+@startuml Ejercicio_C_Secuencia
+hide footbox
+skinparam sequenceMessageAlign center
+title Ejercicio C: Métodos Estáticos y Creación Interna
+
+participant ":ClienteE2" as Cliente
+participant "<<class>>\nPruebaE2" as ClasePrueba
+participant "p : PruebaE2" as InstanciaPrueba
+
+activate Cliente
+    ' 1. Llamada al método estático (Directo a la clase, sin new previo)
+    Cliente -> ClasePrueba : f()
+    activate ClasePrueba
+    
+        ' 2. La clase crea la instancia P por dentro
+        create InstanciaPrueba
+        ClasePrueba -> InstanciaPrueba : new()
+        
+        ' 3. La clase llama al método g() de la instancia
+        ClasePrueba -> InstanciaPrueba : g()
+        activate InstanciaPrueba
+        
+            ' 4. La instancia se llama a sí misma (h)
+            InstanciaPrueba -> InstanciaPrueba : h()
+            activate InstanciaPrueba
+            deactivate InstanciaPrueba
+            
+        ' g termina
+        InstanciaPrueba --> ClasePrueba
+        deactivate InstanciaPrueba
+        
+    ' f termina
+    ClasePrueba --> Cliente
+    deactivate ClasePrueba
+deactivate Cliente
+
+@enduml

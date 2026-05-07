@@ -1,0 +1,36 @@
+@startuml Ejercicio_B_Secuencia
+hide footbox
+skinparam sequenceMessageAlign center
+title Ejercicio B: Secuencia de Llamadas Anidadas
+
+participant ":ClienteE1" as Cliente
+participant "p : PruebaE1" as Prueba
+
+activate Cliente
+    ' 1. Creación del objeto (Constructor)
+    create Prueba
+    Cliente -> Prueba : new()
+
+    ' 2. Llamada externa f()
+    Cliente -> Prueba : f()
+    activate Prueba
+        
+        ' 3. Auto-mensaje: f llama a g
+        Prueba -> Prueba : g()
+        activate Prueba
+        
+            ' 4. Auto-mensaje: g llama a h
+            Prueba -> Prueba : h()
+            activate Prueba
+            ' h termina
+            deactivate Prueba
+            
+        ' g termina
+        deactivate Prueba
+        
+    ' f termina y devuelve el control al cliente
+    Prueba --> Cliente
+    deactivate Prueba
+deactivate Cliente
+
+@enduml

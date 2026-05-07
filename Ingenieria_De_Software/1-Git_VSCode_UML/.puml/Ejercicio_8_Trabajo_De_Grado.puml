@@ -1,0 +1,19 @@
+@startuml TEG 
+
+hide empty members
+
+class TEG
+class TGM
+abstract class TrabajoInvestigacion
+class Profesor
+class EstudiantePregrado
+class EstudiantePostgrado
+
+
+TrabajoInvestigacion <|-- TEG 
+TrabajoInvestigacion <|-- TGM
+Profesor "1..2" --> "1..*"TrabajoInvestigacion : Dirige
+EstudiantePostgrado "1" --> "1"TGM  : Realiza
+EstudiantePregrado "1..2" --> "1" TEG : Realiza
+
+@enduml

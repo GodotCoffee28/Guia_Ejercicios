@@ -1,0 +1,73 @@
+Análisis del Diagrama de Actividad 
+Descripción General: El diagrama modela el flujo de negocio de un pedido, desde que el Cliente encarga un producto 
+hasta que se completa la entrega y se realizan las acciones finales de satisfacción y recibo.
+
+================================================================================
+                    ANÁLISIS DEL DIAGRAMA DE ACTIVIDAD 
+================================================================================
+
+1. OBJETOS
+   - Cantidad: 1 Objeto lógico (:Pedido) representado en 3 instantes diferentes.
+   - Justificación: Se observa el rectángulo ":Pedido" repetido a lo largo del 
+     diagrama para mostrar su evolución temporal.
+
+2. ESTADOS DEL OBJETO
+   - Detalle: 3 Estados ([colocado], [pagadoPorAdelantado], [realizado]).
+   - Justificación: Aparecen denotados entre corchetes [] dentro del rectángulo 
+     del objeto Pedido.
+
+3. ACTIVIDADES
+   - Cantidad: 10 Actividades (Acciones).
+   - Lista: 
+     1. Encargar Producto
+     2. Pagar
+     3. Validar Pedido
+     4. Cobrar Pago
+     5. Obtener producto
+     6. Enviar urgente
+     7. Enviar ordinario
+     8. Dar cervezas a los transportistas
+     9. Añadir cliente a lista satisfechos
+     10. Enviar recibo
+   - Justificación: Son los rectángulos de bordes redondeados que representan 
+     el trabajo realizado.
+
+4. BIFURCACIONES (FORKS)
+   - Cantidad: 3 Forks (Barras de división de flujo).
+   - Ubicación:
+     1. Tras "Encargar Producto" (Divide el flujo hacia Pagar y el Objeto Pedido).
+     2. Tras la unión de envíos (Divide hacia el Objeto Pedido y "Dar cervezas").
+     3. Tras "Dar cervezas" (Divide hacia "Añadir cliente" y "Enviar recibo").
+
+5. UNIONES (JOINS)
+   - Cantidad: 2 Joins (Barras de unión de flujo).
+   - Ubicación:
+     1. Antes del estado Pedido[pagadoPorAdelantado] (Sincroniza el pago y el cobro).
+     2. Antes del nodo final (Espera a que terminen las acciones finales).
+
+6. DECISIONES
+   - Cantidad: 1 Nodo de Decisión.
+   - Detalle: El rombo "¿urgente?".
+   - Nota: El rombo inferior es de fusión (Merge), no de decisión, ya que une 
+     caminos en lugar de separarlos.
+
+7. PARTICIONES (SWIMLANES)
+   - Cantidad: 3 Carriles.
+   - Detalle: 
+     1. Cliente
+     2. Procesamiento del Pedido
+
+2. Lógica del negocio
+P: ¿En qué momento los transportistas van a recibir cervezas? 
+R: Los transportistas reciben las cervezas después de que el producto ha sido enviado (ya sea por envío urgente u ordinario)
+y el flujo se ha unificado.
+
+Evidencia: La flecha hacia la actividad "Dar cervezas a los transportistas" 
+proviene de la barra de unión posterior a los envíos .
+
+P: ¿Qué se hace primero, añadir el cliente a la lista de satisfechos o enviar el recibo? 
+R: Ninguno es primero; se realizan simultáneamente (en paralelo).
+
+Evidencia: Ambas actividades surgen de una Barra de Bifurcación (Fork).
+En UML, esto indica concurrencia, por lo que el sistema inicia ambos 
+procesos al mismo tiempo sin esperar a que uno termine para empezar el otro .

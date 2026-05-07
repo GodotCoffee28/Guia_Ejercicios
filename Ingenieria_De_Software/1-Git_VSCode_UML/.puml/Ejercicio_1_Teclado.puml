@@ -1,0 +1,23 @@
+@startuml Teclado
+
+class Teclado{
+    -String : Modelo
+    -String : Fabricante
+    +Void ComandoConTeclas()
+
+}
+
+class Tecla{
+    -Char : Caracter
+    -String : Fuente
+    +Void EscribirCaracter()
+
+}
+Teclado "1"---> "104" Tecla : Tiene
+
+@endluml
+@startuml Hola
+    Class Persona 
+    Entity Bob 
+    Bob ---o Persona
+@endluml

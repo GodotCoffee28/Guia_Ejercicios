@@ -1,0 +1,30 @@
+@startuml Ejercicio_H_Estado_Vehiculo
+
+title Ejercicio H: Estados de un Vehículo
+
+' Estado inicial
+[*] -> Detenido
+
+' Estados simples
+state Detenido
+state Retrocediendo
+
+' Estado Compuesto (Subestados)
+state Avanzando {
+    ' Entrada al subestado
+    [*] -> Primera
+    
+    Primera --> Segunda : acelerar
+    Segunda --> Tercera : acelerar
+    
+    Tercera --> Segunda : reducir
+    Segunda --> Primera : reducir
+}
+
+' Transiciones entre estados principales
+Detenido --> Avanzando : poner marcha
+Avanzando --> Detenido : frenar total
+Detenido --> Retrocediendo : poner reversa
+Retrocediendo --> Detenido : frenar
+
+@enduml

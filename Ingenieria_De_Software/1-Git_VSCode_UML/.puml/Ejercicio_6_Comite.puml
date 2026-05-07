@@ -1,0 +1,14 @@
+@startuml Comite
+hide empty members  
+class Comite
+class Persona
+
+'Coordinador juega rol de Persona, no hace falta una clase
+
+' El comite tiene miembros
+Comite "0..*" o-- "2..*" Persona : Integrado por >
+
+'coordinacion
+Comite "0..*" --> "1" Persona : Coordinado por >
+
+@enduml

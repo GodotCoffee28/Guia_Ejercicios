@@ -1,0 +1,89 @@
+@startuml DiagramaUml
+skinparam class {
+    BackgroundColor White
+    BorderColor #228B22
+    ArrowColor #2A52BE
+}
+
+title Diagrama de Clases Conceptual - Familia ISO
+
+' -------------------------
+' 1. Clases Base y Abstractas
+' -------------------------
+abstract class ISO_Standard {
+    + code: String
+    + title: String
+    --
+    + applyTo(organization): void
+}
+
+abstract class ManagementSystem extends ISO_Standard {
+    + PDCA_Cycle: boolean = true
+    --
+    + conductAudit(): void
+}
+
+abstract class IT_Standard extends ISO_Standard {
+    --
+    + manageRisk(): void
+}
+
+' -------------------------
+' 2. Clases de Categoría (Heredan de ManagementSystem)
+' -------------------------
+abstract class QualityStandard extends ManagementSystem {
+    + focus: String = "Customer Satisfaction"
+}
+
+abstract class EnvironmentalStandard extends ManagementSystem {
+    + focus: String = "Sustainability"
+}
+
+abstract class SecurityStandard extends IT_Standard {
+    + focus: String = "Information Assets"
+}
+
+' -------------------------
+' 3. Clases Concretas (Normas Específicas)
+' -------------------------
+class ISO9001 extends QualityStandard {
+    + clauses: List<Clause> = [4..10]
+    --
+    + fulfillRequirements(): void
+}
+
+class ISO14001 extends EnvironmentalStandard {
+    + aspects: List<Aspect>
+    --
+    + controlEnvironmentalAspects(): void
+}
+
+class ISO27001 extends SecurityStandard {
+    + AnnexA_Controls: Map<Control>
+    --
+    + establishISMS(): void
+}
+
+class ISO31000 extends ISO_Standard {
+    + principles: List<Principle>
+    --
+    + defineRiskManagementFramework(): void
+}
+
+' -------------------------
+' 4. Clase Externa y Asociaciones
+' -------------------------
+class Organization {
+    + name: String
+    + sector: String
+    --
+    + certify(): void
+}
+
+' Asociación: Una Organización implementa una o varias normas
+Organization "1" -- "*" ISO_Standard : implements / applies
+
+' Nota explicativa
+note top of ISO_Standard: Clase abstracta base\npara todas las normas.
+
+@enduml

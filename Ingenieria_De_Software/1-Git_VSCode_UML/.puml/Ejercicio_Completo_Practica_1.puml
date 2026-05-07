@@ -1,0 +1,148 @@
+@startuml Practica_1_Completa
+
+' --- Configuración Global ---
+hide empty members
+skinparam classAttributeIconSize 0
+
+' ==========================================
+' Ejercicio 1: El Teclado
+' ==========================================
+title Ejercicio 1: Teclado y Teclas
+
+class Teclado
+class Tecla
+
+' Composición: Si rompes el teclado, las teclas pierden su contexto
+' Multiplicidad: "Por lo menos 105" se escribe 105..*
+Teclado "1" *-- "105..*" Tecla
+
+newpage
+
+' ==========================================
+' Ejercicio 2: Personas (Herencia)
+' ==========================================
+title Ejercicio 2: Jerarquía de Personas
+
+class Persona
+class Estudiante
+class Profesor
+class Empleado
+
+' Herencia: "Son tipos de" Persona
+Estudiante --|> Persona
+Profesor   --|> Persona
+Empleado   --|> Persona
+
+newpage
+
+' ==========================================
+' Ejercicio 3: Disco Duro (Estructura)
+' ==========================================
+title Ejercicio 3: Estructura de Disco Duro
+
+class DiscoDuro
+class Pista
+class Sector
+
+' Composición anidada: Disco tiene Pistas, Pista tiene Sectores
+DiscoDuro "1" *-- "*" Pista
+Pista "1"     *-- "*" Sector
+
+newpage
+
+' ==========================================
+' Ejercicio 4: Polígonos (Herencia y Composición)
+' ==========================================
+title Ejercicio 4: Geometría
+
+class Poligono
+class Triangulo
+class Lado
+
+' Herencia: Triángulo ES UN Polígono
+Triangulo --|> Poligono
+
+' Composición: Polígono TIENE Lados (3 o más)
+Poligono "1" *-- "3..*" Lado
+
+newpage
+
+' ==========================================
+' Ejercicio 5: Baseball
+' ==========================================
+title Ejercicio 5: Equipo de Baseball
+
+class EquipoBaseball
+class Jugador
+class Estadio
+
+' Composición: El equipo está formado por jugadores
+EquipoBaseball "1" *-- "9..*" Jugador
+
+' Asociación: El equipo tiene asignado un estadio (El estadio no muere si el equipo desaparece)
+EquipoBaseball "1..*" --> "1" Estadio : Homeclub
+
+newpage
+
+' ==========================================
+' Ejercicio 6/7: El Comité (Roles)
+' ==========================================
+title Ejercicio 6: Comité y Coordinación
+
+class Comite
+class Persona
+
+' Relación 1: Membresía (Agregación)
+' El comité tiene miembros (2 o más), pero ellos existen independientemente
+Comite "0..*" o-- "2..*" Persona : Integrado por >
+
+' Relación 2: Coordinación (Asociación con Rol)
+' Un comité TIENE que tener 1 coordinador (Persona)
+Comite "0..*" --> "1" Persona : Coordinado por >
+
+newpage
+
+' ==========================================
+' Ejercicio 8: Caracterización
+' ==========================================
+title Ejercicio 8: Caracterización y Criterios
+
+class Caracterizacion
+class Criterio
+class ElementoClasificado
+
+' Dependencia: Se fundamenta en al menos 1 criterio
+Caracterizacion "0..*" --> "1..*" Criterio : Se fundamenta en >
+
+' Origen: El elemento nace de una caracterización
+ElementoClasificado "*" --> "1" Caracterizacion : Generado a partir de >
+
+newpage
+
+' ==========================================
+' Ejercicio 9: Trabajos de Grado (Final Boss)
+' ==========================================
+title Ejercicio 9: Trabajos de Grado
+
+abstract class TrabajoInvestigacion
+class TEG
+class TGM
+class Profesor
+class EstudiantePregrado
+class EstudiantePostgrado
+
+' Herencia
+TEG --|> TrabajoInvestigacion
+TGM --|> TrabajoInvestigacion
+
+' Regla General (Padre): Todo trabajo tiene tutor
+TrabajoInvestigacion "*" --> "1..2" Profesor : Dirigido por >
+
+' Reglas Específicas (Hijos):
+' TEG: 1 o 2 de Pregrado
+TEG "*" --> "1..2" EstudiantePregrado : Realizado por >
+
+' TGM: Solo 1 de Postgrado
+TGM "*" --> "1" EstudiantePostgrado : Realizado por >
+
+@enduml

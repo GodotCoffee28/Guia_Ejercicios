@@ -1,0 +1,28 @@
+@startuml Ejercicio_E_Comunicacion
+
+title Ejercicio E: Comunicación (Basado en el B)
+
+skinparam noteBackgroundColor transparent
+skinparam noteBorderColor transparent
+hide members
+
+' 1. Objetos
+object ":ClienteE1" as Cliente
+object "p : PruebaE1" as Prueba
+
+' 2. Enlace Cliente -> Prueba
+Cliente -r-> Prueba
+note on link
+    1: new()
+    2: f()
+end note
+
+' 3. Auto-mensajes (El objeto se habla a sí mismo)
+' Aquí representamos las llamadas internas g() y h()
+Prueba -d-> Prueba
+note on link
+    3: g()
+    4: h()
+end note
+
+@enduml

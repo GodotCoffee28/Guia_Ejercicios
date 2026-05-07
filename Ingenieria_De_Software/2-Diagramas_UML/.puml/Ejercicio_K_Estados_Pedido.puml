@@ -1,0 +1,23 @@
+@startuml Ejercicio_K_Estados_Pedido
+
+title Ejercicio K: Ciclo de Vida del Pedido
+
+' Configuración visual
+hide empty description
+
+' 1. Inicio
+[*] --> Colocado : Encargar Producto
+
+' 2. Primer cambio de estado
+state Colocado
+Colocado --> PagadoPorAdelantado : Validar y Pagar
+
+' 3. Segundo cambio (La logística)
+state PagadoPorAdelantado
+PagadoPorAdelantado --> Realizado : Obtener y Enviar (Urgente/Ordinario)
+
+' 4. Finalización
+state Realizado
+Realizado --> [*] : Entregar, Dar Cervezas y Recibo
+
+@enduml
