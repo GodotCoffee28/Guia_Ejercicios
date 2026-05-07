@@ -20,21 +20,29 @@ int main() {
 
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < N; ++j) {
-            int layer = min(min(i, j), min(N - 1 - i, N - 1 - j));
-            if (layer % 2 == 0) {
-                // borde del cuadrado de esta capa
-                if (i == layer || i == N - 1 - layer || j == layer || j == N - 1 - layer) {
+            bool printed = false;
+            int maxLayer = (N - 1) / 2;
+            for (int k = 0; k <= maxLayer; ++k) {
+                // sólo usamos capas pares para los cuadrados visibles
+                if (k % 2 != 0) continue;
+
+                // borde de la capa k
+                if (i == k || i == N - 1 - k || j == k || j == N - 1 - k) {
                     cout << 'X';
-                } else if (((i - layer) % 2 == 0) && ((j - layer) % 2 == 0)) {
-                    // puntos interiores separados dentro de la capa
-                    cout << 'v';
-                } else {
-                    cout << ' ';
+                    printed = true;
+                    break;
                 }
-            } else {
-                // capa impar: separación entre cuadrados
-                cout << ' ';
+
+                // puntos interiores espaciados dentro de la capa k
+                if (i > k && i < N - 1 - k && j > k && j < N - 1 - k) {
+                    if (((i - k) % 2 == 0) && ((j - k) % 2 == 0)) {
+                        cout << 'v';
+                        printed = true;
+                        break;
+                    }
+                }
             }
+            if (!printed) cout << ' ';
         }
         cout << '\n';
     }
