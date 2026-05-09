@@ -12,10 +12,7 @@ int main(){
     //Primero: Modelamos los grados del angulo de la manecilla de las horas:
         //360° en un reloj. Un reloj tiene 12 horas
         float Grados_H_Hora = 360 / 12; //360°/12 H = 30° cada hora 
-
-
-        float Grados_H_Minuto = Grados_H_Hora / 60; // 30° cada 60 Minutos / 60 minutos -> 0.5 cada Minuto 
-        
+        float Grados_H_Minuto = Grados_H_Hora / 60; // 30° cada 60 Minutos / 60 minutos -> 0.5 cada Minuto     
     //Segundo: Modelamos los grados  del angulo de la manecilla de los minutos:
         //Hay 360 grados en un reloj en 60 minutos
         float Grados_M_Minuto = 360 / 60; // 360° / 60 Minutos -> 6° cada minuto
