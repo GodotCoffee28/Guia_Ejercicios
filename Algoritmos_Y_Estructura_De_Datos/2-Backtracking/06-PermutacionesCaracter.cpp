@@ -10,7 +10,7 @@ void PermutacionesPosiblesEn(string Caracteres, int Tamanio, int indice){
         int suma = 0;
         for(int i = 0; i < Tamanio; i++) suma+=Caracteres[i];
         if(suma % 2 == 0){ //Asegurandose que la suma sea impar, esto es bastante inutil pq en un arreglo no importa como ordenes la suma siempre será impar o par
-            cout<<"PERMUTACION #"<<contador<<endl;
+            cout<<"PERMUTACION #"<<contador<<" : ";
             cout<<Caracteres<<endl;
             contador++;
         }   
@@ -18,9 +18,9 @@ void PermutacionesPosiblesEn(string Caracteres, int Tamanio, int indice){
     }
     for(int i=indice; i<Tamanio; i++){
         
-        swap(Caracteres[i], Caracteres[indice]);
+        swap(Caracteres[i], Caracteres[indice]); //Marco
         PermutacionesPosiblesEn(Caracteres, Tamanio, indice+1);
-        swap(Caracteres[i], Caracteres[indice]);
+        swap(Caracteres[i], Caracteres[indice]);//Desmarco
     }
 
     return;
@@ -34,7 +34,7 @@ void swap(char *a, char *b){
 
 
 int  main(){
-    string Caracteres="123456789";
+    string Caracteres="1234";
 
     //cin>>Caracteres;
     PermutacionesPosiblesEn(Caracteres, Caracteres.length(), 0);
