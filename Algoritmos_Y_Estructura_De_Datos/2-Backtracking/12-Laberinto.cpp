@@ -26,6 +26,8 @@ void ImprimirLaberinto(int **Laberinto, int n){
 }
 int arrI[] = { 0, +1,  0, -1};
 int arrJ[] = {-1,  0, +1,  0};
+// 0 Fila_0 - Col_-1
+
 int MIN_CASILLAS = 1000;
 
 bool **Recorrido = new bool*[100];
@@ -45,13 +47,13 @@ void RecorrerLaberinto(int i_Actual, int j_Actual, int CantCasillasRecorridas, i
     if( CantCasillasRecorridas > MIN_CASILLAS){ //Caso base, en caso de superar el minimo de casillas hasta el momento, ya ese camino no sirve
         return;
     }
+
     Sendero[i_Actual][j_Actual] = true; //Marco
 
     for(int i = 0; i < 4; i++){
         int Sig_i = i_Actual + arrI[i];
         int Sig_j = j_Actual + arrJ[i];
-        if(EsPosicionValida(Sig_i, Sig_j, n, Laberinto) &&  // Si el siguiente movimiento es valido
-        !Sendero[Sig_i][Sig_j]){ //Para evitar movimientos q nos hagan volver, si ya estuvimos ahí no ir 
+        if(EsPosicionValida(Sig_i, Sig_j, n, Laberinto) && !Sendero[Sig_i][Sig_j]){ //Para evitar movimientos q nos hagan volver, si ya estuvimos ahí no ir 
             RecorrerLaberinto(Sig_i, Sig_j,CantCasillasRecorridas+1, Laberinto, Sendero, n); // PASO RECURSIVO: Me muevo a la siguiente casilla y aumentamos 1 casilla
         }
     }

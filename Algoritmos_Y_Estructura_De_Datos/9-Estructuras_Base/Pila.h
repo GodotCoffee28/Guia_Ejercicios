@@ -53,7 +53,7 @@ Stack<T>::Stack(const Stack& other) : topNode(nullptr), count(0) {
 }
 
 template <typename T>
-Stack& Stack<T>::operator=(const Stack& other) {
+Stack<T>& Stack<T>::operator=(const Stack& other) {
     if (this != &other) {
         Clear();
         if (!other.IsEmpty()) {

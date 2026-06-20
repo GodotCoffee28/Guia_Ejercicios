@@ -19,6 +19,7 @@ void MiMochila(Objeto LaMochila[], int Tamaño, Objeto ObjetosDisponibles[], int
     if(PesoActual>PesoMaximo){
         return;
     }else if(PesoActual==PesoMaximo){
+        //COut Solucion encontrada
         return;
     }
     if(ObjetoActual==cantidad){
@@ -35,10 +36,6 @@ void MiMochila(Objeto LaMochila[], int Tamaño, Objeto ObjetosDisponibles[], int
     Solucion[ObjetoActual] = false;
             MiMochila(LaMochila, Tamaño, ObjetosDisponibles, cantidad, ObjetoActual+1,PesoActual, PesoMaximo,Solucion, indice);
     }
-
-
-
-
 
     return;
 }

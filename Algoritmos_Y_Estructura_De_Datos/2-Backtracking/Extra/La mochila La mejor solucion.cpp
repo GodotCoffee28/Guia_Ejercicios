@@ -28,7 +28,7 @@ void MiMochila(Objeto LaMochila[], int Tamaño, Objeto ObjetosDisponibles[], int
         // Si al llegar aquí el peso actual no excede el máximo, esta es una solución válida.
         if (PesoActual <= PesoMaximo) {
             // Guardar esta solución si hay espacio en el arreglo global.
-            if (NSols < MAXSOLUCIONES) { // ¡Cuidado con el desbordamiento!
+            if (NSols < MAXSOLUCIONES) { 
                 for(int i = 0; i < Tamaño; i++){
                     Soluciones[NSols][i] = LaMochila[i];
                 }
@@ -39,7 +39,7 @@ void MiMochila(Objeto LaMochila[], int Tamaño, Objeto ObjetosDisponibles[], int
     }
 
 
-
+    //siguiente posicion
     int  ProximoPeso = PesoActual+ObjetosDisponibles[ObjetoActual].Peso;
     
     if(ProximoPeso<=PesoMaximo){
@@ -49,7 +49,7 @@ void MiMochila(Objeto LaMochila[], int Tamaño, Objeto ObjetosDisponibles[], int
         MiMochila(LaMochila, Tamaño, ObjetosDisponibles, cantidad, ObjetoActual+1,ProximoPeso, PesoMaximo,Soluciones, indice+1);
 
         LaMochila[indice] = Objeto();
-    }
+        }
     }
 
         MiMochila(LaMochila, Tamaño, ObjetosDisponibles, cantidad, ObjetoActual+1,PesoActual, PesoMaximo,Soluciones, indice);
