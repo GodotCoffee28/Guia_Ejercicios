@@ -1,3 +1,6 @@
+#ifndef LISTASIMPLE_H
+#define LISTASIMPLE_H
+
 #include<iostream>
 using namespace std;
 
@@ -6,7 +9,7 @@ using namespace std;
 class intList{
 
     struct Node{
-        int value;
+        int value;  
         Node* next; //NO es recursivo, es un dato que se usa a si mismo
         //Node* back esto sirve para hacer la lista doblemente enlazada
 
@@ -35,8 +38,7 @@ class intList{
         //Que la lista este vacía, que la lista tenga 1 elemento, y que la lista tenga N elementos
     }
     ~intList(){
-        delete head;
-        delete tail;
+        Clear();       
     }
 
     //Primitivas
@@ -109,14 +111,70 @@ class intList{
             Next(current);
             delete aux;
         }
+        delete current;
         delete tail;
         size = 0;
     }
+
+    // Métodos para el Ejercicio 15: Invertir lista sin crear una nueva ni mover elementos físicamente.
+    private:
+    Node* reverse_rec(Node* curr) {
+        if (curr == tail || curr->next == tail) {
+            return curr;
+        }
+        Node* new_head = reverse_rec(curr->next);
+        curr->next->next = curr;
+        curr->next = tail;
+        return new_head;
+    }
+
+    public:
+    void reverseIterative() {
+        if (head->next == tail) return; // Lista vacía
+        Node* prev = tail;
+        Node* curr = head->next;
+        while (curr != tail) {
+            Node* next_node = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next_node;
+        }
+        head->next = prev;
+    }
+
+    void reverseRecursive() {
+        if (head->next == tail) return; // Lista vacía
+        head->next = reverse_rec(head->next);
+    }
+
+    // Métodos para los Ejercicios 9 y 12
+    int suma() {
+        int total = 0;
+        Node* current = head->next;
+        while (current != tail) {
+            total += current->value;
+            current = current->next;
+        }
+        return total;
+    }
+
+    void eliminarRepetidos() {
+        Node* current = head->next;
+        while (current != tail) {
+            int valorBuscar = current->value;
+            Node* runner = current->next;
+            while (runner != tail) {
+                if (runner->value == valorBuscar) {
+                    Node* temp = runner;
+                    runner = runner->next;
+                    Delete(temp);
+                } else {
+                    runner = runner->next;
+                }
+            }
+            current = current->next;
+        }
+    }
 };
 
-
-
-int main(){
-
-    return 0;
-}
+#endif // LISTASIMPLE_H

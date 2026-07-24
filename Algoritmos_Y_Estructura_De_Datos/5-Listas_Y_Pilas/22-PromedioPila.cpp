@@ -1,36 +1,44 @@
-/*Dada una pila, se desea conocer el promedio de los elementos que ella almacena.
- Como restricción la pila puede ser recorrida una sola vez.*/
+#include <iostream>
+#include "../9-Estructuras_Base/PilaSimple.h"
 
- #include <iostream>
- #include <stack>
- using namespace std;
+using namespace std;
 
-template<typename T>
-float Prom(stack<T> p){
-    int sum=0;
-    int size = p.size();
-    while (!p.empty()){
-        sum+=p.top();
-        p.pop();
+/*
+ * Ejercicio 22: Dada una pila, se desea conocer el promedio de los elementos
+ * que ella almacena. Como restricción la pila puede ser recorrida una sola vez.
+ */
+
+float Prom(PilaSimple p) {
+    if (p.IsEmpty()) return 0.0f;
+    
+    int sum = 0;
+    int size = p.Size();
+    
+    while (!p.IsEmpty()) {
+        sum += p.Pop();
     }
 
-    return sum/size;
+    return (float)sum / size;
 }
-template<typename T>
 
-void printstack(stack<T> p){
-    while(!p.empty()){
-        cout<<p.top()<<endl;
-        p.pop();
+void printstack(PilaSimple p) {
+    p.PrintAll();
+}
+
+int main() {
+    cout << "=== EJERCICIO 22: PROMEDIO DE UNA PILA ===" << endl << endl;
+
+    PilaSimple p;
+    for (int i = 1; i <= 10; i++) {
+        p.Push(i);
     }
-}
-
-int main(){
-    stack<int> p;
-    for(int i=1; i < 20 ; i++) p.push(i);
-    cout<<"PILA ACTUAL: "<<endl;
+    
+    cout << "Pila actual:" << endl;
     printstack(p);
-    cout<<"EL PROMEDIO DE LOS VALORES DE LA PILA ES: "<<Prom(p);
+    cout << endl;
+    
+    cout << "El promedio de los valores de la pila es: " << Prom(p) << " (Esperado: 5.5)" << endl;
+    cout << "---------------------------------------------" << endl;
 
     return 0;
 }
